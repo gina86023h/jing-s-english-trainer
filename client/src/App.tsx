@@ -1,24 +1,48 @@
 import React, { useState } from 'react';
 
+const CardStyle = {
+background: 'white',
+borderRadius: '12px',
+border: '1px solid #e4e4e7',
+boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+padding: '24px',
+textAlign: 'left'
+};
+
+const ButtonStyle = {
+width: '100%',
+padding: '12px',
+backgroundColor: '#18181b',
+color: 'white',
+border: 'none',
+borderRadius: '8px',
+fontSize: '16px',
+fontWeight: '600',
+cursor: 'pointer',
+marginTop: '16px'
+};
+
 export default function App() {
-const [text, setText] = useState('');
+const [input, setInput] = useState('');
 const [loading, setLoading] = useState(false);
+const [result, setResult] = useState(null);
+
+const handleAnalyze = () => {
+if (!input) return;
+setLoading(true);
+setTimeout(() => {
+setResult("分析完成！现在的界面已经恢复到高级模式了。下一步我们可以尝试接入真正的 AI 对话。");
+setLoading(false);
+}, 1500);
+};
 
 return (
-<div style={{ padding: '40px', textAlign: 'center', fontFamily: 'sans-serif' }}>
-<h1 style={{ color: '#0070f3' }}>Jing's English Trainer</h1>
-<textarea
-style={{ width: '100%', height: '150px', padding: '10px', borderRadius: '8px', border: '1px solid #ccc' }}
-placeholder="在此输入英文内容..."
-value={text}
-onChange={(e) => setText(e.target.value)}
-/>
-<button
-style={{ width: '100%', padding: '15px', marginTop: '10px', backgroundColor: '#18181b', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}
-onClick={() => alert('分析功能正在接通中...')}
->
-开始分析
-</button>
-</div>
+<div style={{ minHeight: '100vh', backgroundColor: '#fafafa', padding: '40px 20px', fontFamily: 'sans-serif' }}>
+<div style={{ maxWidth: '600px', margin: '0 auto' }}>
+<header style={{ marginBottom: '32px', textAlign: 'center' }}>
+<h1 style={{ fontSize: '28px', fontWeight: 'bold', color: '#09090b' }}>Jing's English Trainer</h1>
+<p style={{ color: '#71717a' }}>像母语者一样思考和表达</p>
+</header>
+
 );
 }
