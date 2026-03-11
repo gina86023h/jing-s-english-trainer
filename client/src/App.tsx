@@ -1,35 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+const cardStyle = { backgroundColor: 'white', padding: '32px 24px', borderRadius: '16px', border: '1px solid #e4e4e7', textAlign: 'center' as const };
+const SidebarItem = ({ label, level, active }: any) => (
 
-// 样式配置：恢复原本的高级黑白质感
-const styles = {
-container: { minHeight: '100vh', backgroundColor: '#fafafa', padding: '40px 20px', fontFamily: '-apple-system, sans-serif' },
-wrapper: { maxWidth: '800px', margin: '0 auto' },
-header: { textAlign: 'center' as const, marginBottom: '40px' },
-card: { background: 'white', borderRadius: '16px', border: '1px solid #e4e4e7', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', padding: '32px' },
-label: { display: 'block', fontSize: '14px', fontWeight: '600', color: '#3f3f46', marginBottom: '12px' },
-textarea: { width: '100%', height: '160px', padding: '16px', borderRadius: '12px', border: '1px solid #e4e4e7', fontSize: '16px', lineHeight: '1.6', boxSizing: 'border-box' as const, outline: 'none', transition: 'border 0.2s' },
-button: { width: '100%', marginTop: '20px', padding: '14px', backgroundColor: '#18181b', color: 'white', border: 'none', borderRadius: '10px', fontSize: '16px', fontWeight: '600', cursor: 'pointer' },
-resultBox: { marginTop: '30px', padding: '20px', backgroundColor: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }
-};
-
+<div style={{ padding: '12px 20px', backgroundColor: active ? '#f4f4f5' : 'transparent', borderRadius: '8px', cursor: 'pointer', marginBottom: '4px' }}>
+<div style={{ fontSize: '14px', fontWeight: 'bold', color: active ? '#18181b' : '#71717a' }}>{label}</div>
+<div style={{ fontSize: '12px', color: '#a1a1aa' }}>{level} Level</div>
+</div>
+);
 export default function App() {
-const [input, setInput] = useState('');
-const [loading, setLoading] = useState(false);
-const [analysis, setAnalysis] = useState<any>(null);
-
-const handleAnalyze = () => {
-if (!input.trim()) return;
-setLoading(true);
-
-};
-
 return (
-<div style={styles.container}>
-<div style={styles.wrapper}>
-<header style={styles.header}>
-<h1 style={{ fontSize: '32px', fontWeight: '800', color: '#09090b', margin: 0 }}>Jing's English Trainer</h1>
-<p style={{ color: '#71717a', marginTop: '8px' }}>智能 AI 辅助，让你的英文表达更地道</p>
-</header>
-
+<div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa', fontFamily: 'sans-serif' }}>
+<div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px' }}>
+<div style={{ marginBottom: '32px', paddingLeft: '20px' }}><div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold' }}>英语水平等级</div></div>
+<SidebarItem label="Key (KET)" level="A2" />
+<SidebarItem label="Preliminary (PET)" level="B1" />
+<SidebarItem label="First (FCE)" level="B2" active={true} />
+<SidebarItem label="Advanced (CAE)" level="C1" />
+<SidebarItem label="Proficiency (CPE)" level="C2" />
+</div>
 );
 }
