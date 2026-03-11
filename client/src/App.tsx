@@ -19,6 +19,15 @@ export default function App() {
         <SidebarItem label="First (FCE)" level="B2" active={true} />
         <SidebarItem label="Advanced (CAE)" level="C1" />
         <SidebarItem label="Proficiency (CPE)" level="C2" />
+        <div style={{ marginTop: '32px', borderTop: '1px solid #f4f4f5', paddingTop: '24px' }}>
+<div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold', marginBottom: '16px' }}>LEARNING TOOLS</div>
+<div style={{ padding: '12px 0', fontSize: '14px' }}>📊 学习进度</div>
+<div style={{ padding: '12px 0', fontSize: '14px' }}>📓 错题本</div>
+</div>
+        <div style={{ marginTop: '20px', display: 'flex', gap: '8px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
+<div style={{ flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px' }}>GB EN</div>
+<div style={{ flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px', backgroundColor: '#4f46e5', color: 'white', borderRadius: '6px' }}>CN 中文</div>
+</div>
       </div>
       <div style={{ flex: 1, padding: '60px' }}>
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
