@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const SidebarItem = ({ label, level, active }: any) => (
 
@@ -8,6 +8,7 @@ const SidebarItem = ({ label, level, active }: any) => (
 </div>
 );
 export default function App() {
+  const [active, setActive] = useState('IELTS');
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa', fontFamily: 'sans-serif' }}>
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px' }}>
