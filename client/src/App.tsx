@@ -1,26 +1,52 @@
 import React, { useState } from 'react';
 
+// 下面是手动定义的样式，不依赖任何外部文件
+const CardStyle = {
+background: 'white',
+borderRadius: '12px',
+border: '1px solid #e4e4e7',
+boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+padding: '24px',
+textAlign: 'left'
+};
+
+const ButtonStyle = {
+width: '100%',
+padding: '12px',
+backgroundColor: '#18181b',
+color: 'white',
+border: 'none',
+borderRadius: '8px',
+fontSize: '16px',
+fontWeight: '600',
+cursor: 'pointer',
+marginTop: '16px'
+};
+
 export default function App() {
-const [text, setText] = useState('');
+const [input, setInput] = useState('');
+const [loading, setLoading] = useState(false);
+const [result, setResult] = useState(null);
+
+const handleAnalyze = () => {
+if (!input) return;
+setLoading(true);
+// 模拟分析过程
+setTimeout(() => {
+setResult("分析完成！建议：可以多使用一些从句来增加表达的深度。");
+setLoading(false);
+}, 1500);
+};
 
 return (
-<div style={{ padding: '40px 20px', maxWidth: '600px', margin: '0 auto', fontFamily: 'sans-serif', textAlign: 'center' }}>
-<h1 style={{ color: '#0070f3' }}>Jing's English Trainer</h1>
-<div style={{ backgroundColor: '#f0f9ff', padding: '10px', borderRadius: '8px', color: '#0070f3', marginBottom: '20px' }}>
-✅ 部署状态：已在线
-</div>
-<textarea
-style={{ width: '100%', height: '150px', padding: '15px', borderRadius: '8px', border: '2px solid #eaeaea', fontSize: '16px', boxSizing: 'border-box' }}
-placeholder="在此输入英文练习内容..."
-value={text}
-onChange={(e) => setText(e.target.value)}
-/>
-<button
-style={{ width: '100%', marginTop: '20px', padding: '15px', backgroundColor: '#0070f3', color: 'white', border: 'none', borderRadius: '8px', fontSize: '18px', cursor: 'pointer' }}
-onClick={() => alert('内容已接收：' + text)}
->
-开始练习
-</button>
-</div>
+<div style={{ minHeight: '100vh', backgroundColor: '#fafafa', padding: '40px 20px', fontFamily: 'sans-serif' }}>
+<div style={{ maxWidth: '600px', margin: '0 auto' }}>
+<header style={{ marginBottom: '32px', textAlign: 'center' }}>
+<h1 style={{ fontSize: '28px', fontWeight: 'bold', color: '#09090b' }}>
+Jing's English Trainer
+</h1>
+<p style={{ color: '#71717a' }}>像母语者一样思考和表达</p>
+</header>
+
 );
 }
