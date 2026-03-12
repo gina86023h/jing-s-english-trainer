@@ -24,6 +24,14 @@ export default function App() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa', fontFamily: 'sans-serif' }}>
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px' }}>
+        <style>{`
+    .sidebar-item:hover {
+      background-color: #f4f4f5 !important;
+    }
+    .sidebar-item:hover div {
+      color: #4f46e5 !important;
+    }
+  `}</style>
         <div style={{ marginBottom: '32px', paddingLeft: '20px' }}>
           <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold' }}>英语水平等级</div>
         </div>
@@ -58,7 +66,6 @@ export default function App() {
           <button style={{ backgroundColor: '#4f46e5', color: 'white', padding: '16px 40px', borderRadius: '12px', border: 'none', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer' }}>开始练习 →</button>
         </div>
       </div>
-      <style>{.sidebar-item:hover { background-color: #f4f4f5 !important; } .sidebar-item:hover div { color: #4f46e5 !important; }}</style>
     </div>
   );
  }
