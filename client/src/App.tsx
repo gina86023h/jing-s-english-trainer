@@ -25,7 +25,6 @@ export default function App() {
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa', fontFamily: 'sans-serif' }}>
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px' }}>
         <style>{.sidebar-item:not(.active):hover { background-color: #f4f4f5 !important; } .sidebar-item:not(.active):hover div { color: #4f46e5 !important; }}</style>
-  `}</style>
         <div style={{ marginBottom: '32px', paddingLeft: '20px' }}>
           <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold' }}>英语水平等级</div>
         </div>
