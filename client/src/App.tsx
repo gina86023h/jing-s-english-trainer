@@ -21,7 +21,7 @@ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
 </div>
 {active && <span style={{ color: 'white', fontSize: '18px' }}>✦</span>}
 </div>
-); };  
+); 
 export default function App() {
   const [activeLevel, setActiveLevel] = useState('FCE');
   return (
