@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-<style>{.sidebar-item:hover { background-color: #f4f4f5 !important; } .sidebar-item:hover div { color: #4f46e5 !important; }}</style>
+
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
 <div className="sidebar-item"
@@ -58,6 +58,7 @@ export default function App() {
           <button style={{ backgroundColor: '#4f46e5', color: 'white', padding: '16px 40px', borderRadius: '12px', border: 'none', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer' }}>开始练习 →</button>
         </div>
       </div>
+      <style>{.sidebar-item:hover { background-color: #f4f4f5 !important; } .sidebar-item:hover div { color: #4f46e5 !important; }}</style>
     </div>
   );
-}
+ }
