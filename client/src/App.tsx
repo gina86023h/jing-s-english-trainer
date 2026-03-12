@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 
-const SidebarItem = ({ label, level, active }: any) => (
+const SidebarItem = ({ label, level, active, onClick }: any) => (
 
-<div style={{ padding: '12px 20px', backgroundColor: active ? '#f4f4f5' : 'transparent', borderRadius: '8px', cursor: 'pointer', marginBottom: '4px' }}>
-<div style={{ fontSize: '14px', fontWeight: 'bold', color: active ? '#18181b' : '#71717a' }}>{label}</div>
-<div style={{ fontSize: '12px', color: '#a1a1aa' }}>{level} Level</div>
+<div
+onClick={onClick}
+style={{
+padding: '12px 20px',
+backgroundColor: active ? '#4f46e5' : 'transparent',
+borderRadius: '12px',
+cursor: 'pointer',
+marginBottom: '4px',
+color: active ? 'white' : '#71717a',
+display: 'flex',
+flexDirection: 'column'
+}}
+>
+<div style={{ fontSize: '14px', fontWeight: 'bold' }}>{label}</div>
+<div style={{ fontSize: '12px', opacity: active ? 0.8 : 0.6 }}>{level} Level</div>
 </div>
 );
 export default function App() {
