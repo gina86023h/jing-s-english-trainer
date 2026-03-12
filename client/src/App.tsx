@@ -12,7 +12,7 @@ cursor: 'pointer',
 marginBottom: '4px',
 color: active ? 'white' : '#71717a',
 flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-flexDirection: 'column'
+flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
 }}
 >
 <div>
