@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
-<div className="sidebar-item"
+<div className={sidebar-item ${active ? 'active' : ''}}
 onClick={onClick}
 style={{
 padding: '12px 20px',
@@ -24,13 +24,7 @@ export default function App() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa', fontFamily: 'sans-serif' }}>
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px' }}>
-        <style>{`
-    .sidebar-item:hover {
-      background-color: #f4f4f5 !important;
-    }
-    .sidebar-item:hover div {
-      color: #4f46e5 !important;
-    }
+        <style>{.sidebar-item:not(.active):hover { background-color: #f4f4f5 !important; } .sidebar-item:not(.active):hover div { color: #4f46e5 !important; }}</style>
   `}</style>
         <div style={{ marginBottom: '32px', paddingLeft: '20px' }}>
           <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold' }}>英语水平等级</div>
