@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
-<div className={sidebar-item ${active ? 'active' : ''}}
+<div className={active ? 'sidebar-item active' : 'sidebar-item'}
 onClick={onClick}
 style={{
 padding: '12px 20px',
