@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
-<div className={active ? 'sidebar-item active' : 'sidebar-item'}
+<div onClick={onClick} className={active ? 'sidebar-item active' : 'sidebar-item'}
 onClick={onClick}
 style={{
 padding: '12px 20px',
@@ -11,12 +11,12 @@ borderRadius: '12px',
 cursor: 'pointer',
 marginBottom: '4px',
 color: active ? 'white' : '#71717a',
-display: 'flex',
+flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
 flexDirection: 'column'
 }}
 >
 <div style={{ fontSize: '14px', fontWeight: 'bold' }}>{label}</div>
-<div style={{ fontSize: '12px', opacity: active ? 0.8 : 0.6 }}>{level} Level</div>
+<div style={{ fontSize: '12px', opacity: active ? 0.8 : 0.6 }}>{level} Level</div>{active && <span style={{ color: 'white', fontSize: '16px', marginLeft: 'auto' }}>✦</span>}
 </div>
 );
 export default function App() {
