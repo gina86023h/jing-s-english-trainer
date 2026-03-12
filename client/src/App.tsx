@@ -8,6 +8,7 @@ const SidebarItem = ({ label, level, active }: any) => (
 </div>
 );
 export default function App() {
+  const [activeLevel, setActiveLevel] = useState('FCE');
   const [active, setActive] = useState('IELTS');
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa', fontFamily: 'sans-serif' }}>
