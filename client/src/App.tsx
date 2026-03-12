@@ -11,8 +11,7 @@ borderRadius: '12px',
 cursor: 'pointer',
 marginBottom: '4px',
 color: active ? 'white' : '#71717a',
-flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
 }}
 >
 <div>
