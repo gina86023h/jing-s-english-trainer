@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
+<style>{.sidebar-item:hover { background-color: #f4f4f5 !important; } .sidebar-item:hover div { color: #4f46e5 !important; }}</style>
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
-<div
+<div className="sidebar-item"
 onClick={onClick}
 style={{
 padding: '12px 20px',
