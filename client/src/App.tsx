@@ -20,7 +20,6 @@ flexDirection: 'column'
 <div style={{ fontSize: '12px', opacity: active ? 0.8 : 0.6 }}>{level} Level</div>
 </div>
 {active && <span style={{ color: 'white', fontSize: '18px' }}>✦</span>}
-);
 export default function App() {
   const [activeLevel, setActiveLevel] = useState('FCE');
   return (
