@@ -21,18 +21,18 @@ flexDirection: 'column'
 );
 export default function App() {
   const [activeLevel, setActiveLevel] = useState('FCE');
-  const [active, setActive] = useState('IELTS');
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fafafa', fontFamily: 'sans-serif' }}>
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px' }}>
         <div style={{ marginBottom: '32px', paddingLeft: '20px' }}>
           <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold' }}>英语水平等级</div>
         </div>
-        <SidebarItem label="Key (KET)" level="A2" />
-        <SidebarItem label="Preliminary (PET)" level="B1" />
-        <SidebarItem label="First (FCE)" level="B2" active={true} />
-        <SidebarItem label="Advanced (CAE)" level="C1" />
-        <SidebarItem label="Proficiency (CPE)" level="C2" />
+        <SidebarItem label="Key (KET)" level="A2" active={activeLevel === 'KET'} onClick={() => setActiveLevel('KET')} />
+<SidebarItem label="Preliminary (PET)" level="B1" active={activeLevel === 'B1'} onClick={() => setActiveLevel('B1')} />
+<SidebarItem label="First (FCE)" level="B2" active={activeLevel === 'FCE'} onClick={() => setActiveLevel('FCE')} />
+<SidebarItem label="Advanced (CAE)" level="C1" active={activeLevel === 'CAE'} onClick={() => setActiveLevel('CAE')} />
+<SidebarItem label="Proficiency (CPE)" level="C2" active={activeLevel === 'CPE'} onClick={() => setActiveLevel('CPE')} />
+<SidebarItem label="IELTS Academic" level="All bands" active={activeLevel === 'IELTS'} onClick={() => setActiveLevel('IELTS')} />
         <div style={{ marginTop: '32px', borderTop: '1px solid #f4f4f5', paddingTop: '24px' }}>
 <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold', marginBottom: '16px' }}>LEARNING TOOLS</div>
 <div style={{ padding: '12px 0', fontSize: '14px' }}>📊 学习进度</div>
