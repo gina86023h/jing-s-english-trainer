@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { 
-  Search, Bell, ChevronRight, GraduationCap, Settings, HelpCircle, 
-  LineChart, BookOpen, Star, Brain, Target 
-} from 'lucide-react';
+import { Search, Bell, ChevronRight, GraduationCap, Settings, HelpCircle, LineChart, BookOpen, Star, Brain, Target } from 'lucide-react';
+
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
 <div onClick={onClick} className={active ? 'sidebar-item active' : 'sidebar-item'}
