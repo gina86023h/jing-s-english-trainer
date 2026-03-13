@@ -75,9 +75,8 @@ onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundCo
             <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #e4e4e7' }}><strong>即时AI反馈</strong><br/><small>详细改正意见</small></div>
             <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #e4e4e7' }}><strong>考试导向</strong><br/><small>专为剑桥雅思设计</small></div>
           </div>
-          <button style={{ backgroundColor: '#4338ca', color: 'white', padding: '16px 40px', borderRadius: '12px', border: 'none', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer' }}>开始练习 →</button>
-        </div>
-      </div>
     </div>
   );
- }
+}
+
+export default App;
