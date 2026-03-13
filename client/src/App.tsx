@@ -1,3 +1,4 @@
+import { LineChart, BookOpen, Star, GraduationCap, Brain, Target } from 'lucide-react';
 import React, { useState } from 'react';
 
 const SidebarItem = ({ label, level, active, onClick }: any) => (
