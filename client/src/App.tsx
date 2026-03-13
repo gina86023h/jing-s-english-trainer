@@ -32,26 +32,27 @@ export default function App() {
         <div style={{ marginTop: '32px', borderTop: '1px solid #f4f4f5', paddingTop: '24px' }}>
 <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold', marginBottom: '16px' }}>LEARNING TOOLS</div>
 {['学习进度', '错题本'].map((item) => (
-** <div **
-** key={item}**
-** onClick={() => setActiveTab(item)} **
-** style={{ **
-** padding: '10px 16px', **
-** fontSize: '14px', **
-** display: 'flex', **
-** alignItems: 'center', **
-** gap: '8px', **
-** cursor: 'pointer', **
-** borderRadius: '8px', **
-** transition: 'all 0.2s',**
-** backgroundColor: activeTab === item ? '#f4f4f5' : 'transparent',**
-** color: activeTab === item ? '#18181b' : '#71717a'**
-** }} **
-** onMouseEnter={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = '#f4f4f5' }} **
-** onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = 'transparent' }}**
-** >**
-** <span>{item === '学习进度' ? '📊' : '📓'}</span> {item}**
-** </div>**
+
+<div
+key={item}
+onClick={() => setActiveTab(item)}
+style={{
+padding: '10px 16px',
+fontSize: '14px',
+display: 'flex',
+alignItems: 'center',
+gap: '8px',
+cursor: 'pointer',
+borderRadius: '8px',
+transition: 'all 0.2s',
+backgroundColor: activeTab === item ? '#f4f4f5' : 'transparent',
+color: activeTab === item ? '#18181b' : '#71717a'
+}}
+onMouseEnter={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = '#f4f4f5' }}
+onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = 'transparent' }}
+>
+<span>{item === '学习进度' ? '📊' : '📓'}</span> {item}
+</div>
 ))}
 <div style={{ padding: '12px 0', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}><span style={{ filter: 'grayscale(100%)', opacity: 0.7 }}>📓</span> 错题本</div>
 </div>
