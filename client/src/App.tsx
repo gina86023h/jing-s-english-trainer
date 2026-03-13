@@ -14,6 +14,7 @@ style={{ padding: '12px 20px', backgroundColor: active ? '#4338ca' : 'transparen
 </div>
 ); 
 export default function App() {
+  const [activeTab, setActiveTab] = React.useState('');
   const [activeLevel, setActiveLevel] = useState('FCE');
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: 'sans-serif' }}>
@@ -30,7 +31,28 @@ export default function App() {
 <SidebarItem label="IELTS Academic" level="All bands" active={activeLevel === 'IELTS'} onClick={() => setActiveLevel('IELTS')} />
         <div style={{ marginTop: '32px', borderTop: '1px solid #f4f4f5', paddingTop: '24px' }}>
 <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold', marginBottom: '16px' }}>LEARNING TOOLS</div>
-<div style={{ padding: '10px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px', color: '#71717a', cursor: 'pointer', borderRadius: '8px', transition: 'all 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f4f4f5'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>📊 学习进度</div><div style={{ padding: '10px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px', color: '#71717a', cursor: 'pointer', borderRadius: '8px', transition: 'all 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f4f4f5'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>📊 学习进度</div><div style={{ padding: '10px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px', color: '#71717a', cursor: 'pointer', borderRadius: '8px', transition: 'all 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f4f4f5'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>📊 学习进度</div><div style={{ padding: '10px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px', color: '#71717a', cursor: 'pointer', borderRadius: '8px', transition: 'all 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f4f4f5'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>📊 学习进度</div><div style={{ padding: '10px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px', color: '#71717a', cursor: 'pointer', borderRadius: '8px', transition: 'all 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f4f4f5'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}>📊 学习进度</div>
+{['学习进度', '错题本'].map((item) => (
+** <div **
+** key={item}**
+** onClick={() => setActiveTab(item)} **
+** style={{ **
+** padding: '10px 16px', **
+** fontSize: '14px', **
+** display: 'flex', **
+** alignItems: 'center', **
+** gap: '8px', **
+** cursor: 'pointer', **
+** borderRadius: '8px', **
+** transition: 'all 0.2s',**
+** backgroundColor: activeTab === item ? '#f4f4f5' : 'transparent',**
+** color: activeTab === item ? '#18181b' : '#71717a'**
+** }} **
+** onMouseEnter={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = '#f4f4f5' }} **
+** onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = 'transparent' }}**
+** >**
+** <span>{item === '学习进度' ? '📊' : '📓'}</span> {item}**
+** </div>**
+))}
 <div style={{ padding: '12px 0', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}><span style={{ filter: 'grayscale(100%)', opacity: 0.7 }}>📓</span> 错题本</div>
 </div>
         <div style={{ marginTop: '20px', display: 'flex', gap: '8px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
