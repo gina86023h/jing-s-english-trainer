@@ -43,7 +43,7 @@ export default function App() {
         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
           <div style={{ marginBottom: '40px' }}>
             <span style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold' }}>✦ 智能评估</span>
-           <h1 style={{ fontSize: '48px', fontWeight: '800', marginTop: '20px', background: 'linear-gradient(to bottom, #1e293b 20%, #4338ca 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: '1.2' }}>掌握英文翻译
+          <h1 style={{ fontSize: '48px', fontWeight: '800', marginTop: '20px', background: 'linear-gradient(to bottom, #1e293b 20%, #4338ca 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: '1.2' }}>掌握英文翻译<br/>一步步提升</h1>
             <p style={{ color: '#71717a', fontSize: '18px', marginTop: '16px' }}>从 KET 到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '40px' }}>
