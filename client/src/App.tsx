@@ -31,7 +31,31 @@ export default function App() {
 <SidebarItem label="IELTS Academic" level="All bands" active={activeLevel === 'IELTS'} onClick={() => setActiveLevel('IELTS')} />
         <div style={{ marginTop: '32px', borderTop: '1px solid #f4f4f5', paddingTop: '24px' }}>
 <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold', marginBottom: '16px' }}>LEARNING TOOLS</div>
+{['学习进度', '错题本'].map((item) => (
 
+<div
+key={item}
+onClick={() => setActiveTab(item)}
+style={{
+padding: '12px 16px',
+fontSize: '14px',
+display: 'flex',
+alignItems: 'center',
+gap: '12px',
+cursor: 'pointer',
+borderRadius: '12px',
+transition: 'all 0.2s',
+marginBottom: '4px',
+backgroundColor: activeTab === item ? '#4338ca' : 'transparent',
+color: activeTab === item ? 'white' : '#71717a'
+}}
+onMouseEnter={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = '#f4f4f5' }}
+onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundColor = 'transparent' }}
+>
+{item === '学习进度' ? <LineChart size={18} /> : <BookOpen size={18} />}
+<span style={{ fontWeight: '500' }}>{item}</span>
+</div>
+))}
 <div style={{ padding: '12px 0', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}><span style={{ filter: 'grayscale(100%)', opacity: 0.7 }}>📓</span> 错题本</div>
 </div>
         <div style={{ marginTop: '20px', display: 'flex', gap: '8px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
