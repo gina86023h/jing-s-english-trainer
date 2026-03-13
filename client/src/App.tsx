@@ -1,5 +1,5 @@
-import { LineChart, BookOpen, Star, GraduationCap, Brain, Target } from 'lucide-react';
 import React, { useState } from 'react';
+import { Search, Bell, ChevronRight, GraduationCap, Settings, HelpCircle, LineChart, BookOpen, Star, Brain, Target } from 'lucide-react';
 
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
