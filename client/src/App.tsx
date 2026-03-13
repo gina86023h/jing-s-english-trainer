@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 const SidebarItem = ({ label, level, active, onClick }: any) => (
 
 <div onClick={onClick} className={active ? 'sidebar-item active' : 'sidebar-item'}
-style={{
-padding: '12px 20px', backgroundColor: active ? '#4338ca' : 'transparent', borderRadius: '12px', cursor: 'pointer', marginBottom: '4px', color: active ? 'white' : '#71717a', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'
-}}
+style={{ padding: '12px 20px', backgroundColor: active ? '#4338ca' : 'transparent', borderRadius: '12px', cursor: 'pointer', marginBottom: '4px', color: active ? 'white' : '#71717a', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
 >
 <div>
 <div style={{ fontSize: '14px', fontWeight: 'bold' }}>{label}</div>
