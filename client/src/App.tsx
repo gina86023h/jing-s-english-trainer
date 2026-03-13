@@ -18,7 +18,7 @@ export default function App() {
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: 'sans-serif' }}>
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px' }}>
-        <style dangerouslySetInnerHTML={{ __html: ".sidebar-item:not(.active):hover { background-color: #f4f4f5 !important; } .sidebar-item:not(.active):hover div { color: #4338ca !important; }" }} />
+        <style dangerouslySetInnerHTML={{ __html: ".sidebar-item:not(.active):hover { background-color: #f4f4f5 !important; } .sidebar-sub-item:hover { background-color: #f4f4f5 !important; color: #18181b !important; }" }} />
         <div style={{ marginBottom: '32px', paddingLeft: '20px' }}>
           <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold' }}>英语水平等级</div>
         </div>
