@@ -62,7 +62,8 @@ onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundCo
 <div style={{ flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px' }}>GB EN</div>
 <div style={{ flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px', backgroundColor: '#4338ca', color: 'white', borderRadius: '6px' }}>CN 中文</div>
 </div>
-  );
+  </div>
+);
 };
 
 export default App;
