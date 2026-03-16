@@ -41,7 +41,7 @@ export default function App() {
       h1_bot: "一步步提升",
       desc: "从KET到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。",
       cards: [
-        { icon: <BookText color="#4338ca" size={28} />, title: '结构化课程', desc: '从A2到C2分级' },
+        { icon: <BookText color="#4338ca" size={28} />, title: '结构化课程', desc: '从A2到C2分级练习' },
         { icon: <Brain color="#4338ca" size={28} />, title: '即时AI反馈', desc: '详细的改正意见' },
         { icon: <Target color="#4338ca" size={28} />, title: '考试导向', desc: '专为剑桥和雅思设计' }
       ],
@@ -65,50 +65,129 @@ export default function App() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fcfcfd', fontFamily: 'sans-serif' }}>
+      
+      {/* 侧边栏 */}
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #f1f1f4', padding: '24px', display: 'flex', flexDirection: 'column' }}>
         <style dangerouslySetInnerHTML={{ __html: ".sidebar-item:not(.active):hover { background-color: #f8f8fb !important; }" }} />
+        
         <div style={{ marginBottom: '32px', paddingLeft: '20px' }}>
           <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold' }}>英语水平等级</div>
         </div>
+
         <div style={{ flex: 1 }}>
-          {['KET', 'B1', 'FCE', 'CAE', 'C2', 'IELTS'].map(id => (
-            <SidebarItem key={id} label={id} level={id} active={activeLevel === id} onClick={() => setActiveLevel(id)} />
+          {[
+            { id: 'KET', label: 'Key (KET)', level: 'A2' },
+            { id: 'B1', label: 'Preliminary (PET)', level: 'B1' },
+            { id: 'FCE', label: 'First (FCE)', level: 'B2' },
+            { id: 'CAE', label: 'Advanced (CAE)', level: 'C1' },
+            { id: 'C2', label: 'Proficiency (CPE)', level: 'C2' },
+            { id: 'IELTS', label: 'IELTS Academic', level: 'All bands' }
+          ].map(item => (
+            <SidebarItem key={item.id} label={item.label} level={item.level} active={activeLevel === item.id} onClick={() => setActiveLevel(item.id)} />
           ))}
         </div>
+
         <div style={{ marginTop: '32px', borderTop: '1px solid #f4f4f5', paddingTop: '24px' }}>
+          <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: 'bold', marginBottom: '16px' }}>LEARNING TOOLS</div>
           {['学习进度', '错题本'].map((item) => (
-            <div key={item} onClick={() => setActiveTab(item)} style={{ padding: '12px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', borderRadius: '12px', backgroundColor: activeTab === item ? '#4338ca' : 'transparent', color: activeTab === item ? 'white' : '#71717a' }}>
+            <div
+              key={item}
+              onClick={() => setActiveTab(item)}
+              style={{
+                padding: '12px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '12px',
+                cursor: 'pointer', borderRadius: '12px', transition: 'all 0.2s', marginBottom: '4px',
+                backgroundColor: activeTab === item ? '#4338ca' : 'transparent',
+                color: activeTab === item ? 'white' : '#71717a'
+              }}
+            >
               {item === '学习进度' ? <LineChart size={18} /> : <BookOpen size={18} />}
               <span style={{ fontWeight: '500' }}>{item}</span>
             </div>
           ))}
+
+          {/* 语言切换栏：完美还原高亮效果 */}
           <div style={{ marginTop: '20px', display: 'flex', gap: '8px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
-            {['EN', 'CN'].map(lang => (
-              <div key={lang} onClick={() => setActiveLanguage(lang)} style={{ flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px', cursor: 'pointer', borderRadius: '6px', backgroundColor: activeLanguage === lang ? '#4338ca' : 'transparent', color: activeLanguage === lang ? 'white' : '#71717a' }}>
-                {lang === 'EN' ? 'GB EN' : 'CN 中文'}
-              </div>
-            ))}
+            <div 
+              onClick={() => setActiveLanguage('EN')}
+              style={{ 
+                flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px', cursor: 'pointer', borderRadius: '6px', transition: 'all 0.2s',
+                backgroundColor: activeLanguage === 'EN' ? '#4338ca' : 'transparent', 
+                color: activeLanguage === 'EN' ? 'white' : '#71717a' 
+              }}>
+              GB EN
+            </div>
+            <div 
+              onClick={() => setActiveLanguage('CN')}
+              style={{ 
+                flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px', cursor: 'pointer', borderRadius: '6px', transition: 'all 0.2s',
+                backgroundColor: activeLanguage === 'CN' ? '#4338ca' : 'transparent', 
+                color: activeLanguage === 'CN' ? 'white' : '#71717a' 
+              }}>
+              CN 中文
+            </div>
           </div>
         </div>
       </div>
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px' }}>
-        <div style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold', marginBottom: '24px' }}>{t.tag}</div>
-        <div style={{ textAlign: 'center' }}>
-          <h1 style={{ fontSize: '64px', fontWeight: '900', color: '#18181b', margin: 0 }}>{t.h1_top}</h1>
-          <h1 style={{ fontSize: '64px', fontWeight: '900', margin: '10px 0 30px 0', background: 'linear-gradient(to right, #4338ca, #6366f1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '8px' }}>{t.h1_bot}</h1>
-          <p style={{ color: '#71717a', fontSize: '18px', maxWidth: '600px', margin: '0 auto' }}>{t.desc}</p>
+      {/* 主内容区：全方位审美还原 */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px', overflowY: 'auto' }}>
+        
+        {/* 顶部标签 - 增加了下边距让界面“透气” */}
+        <div style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '8px 20px', borderRadius: '20px', fontSize: '13px', fontWeight: 'bold', marginBottom: '40px' }}>
+          {t.tag}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 240px)', gap: '24px', margin: '40px 0' }}>
+
+        {/* 标题还原 - 严格控制文字换行、间距和渐变颜色 */}
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+          <h1 style={{ 
+            fontSize: '68px', fontWeight: '900', color: '#18181b', margin: 0, 
+            letterSpacing: '1px', lineHeight: 1.1 // 控制换行和字母间距
+          }}>
+            {t.h1_top}
+          </h1>
+          <h1 style={{ 
+            fontSize: '68px', fontWeight: '900', margin: '15px 0 35px 0', 
+            background: 'linear-gradient(to right, #4338ca, #6366f1)', 
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            letterSpacing: '8px', lineHeight: 1.1 // 还原截图中的超宽字距
+          }}>
+            {t.h1_bot}
+          </h1>
+          {/* 副标题增加了行高，呈现更精致的灰色细体感 */}
+          <p style={{ color: '#71717a', fontSize: '20px', maxWidth: '650px', margin: '0 auto', lineHeight: '1.65' }}>
+            {t.desc}
+          </p>
+        </div>
+
+        {/* 功能卡片组 - 精细调整圆角、填充和虚化阴影 */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 260px)', gap: '30px', margin: '60px 0 80px 0' }}>
           {t.cards.map((card, i) => (
-            <div key={i} style={{ backgroundColor: 'white', padding: '32px 20px', borderRadius: '24px', border: '1px solid #f1f1f4', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ backgroundColor: '#f5f7ff', padding: '16px', borderRadius: '16px', marginBottom: '20px' }}>{card.icon}</div>
-              <div style={{ fontWeight: 'bold', fontSize: '18px', color: '#18181b' }}>{card.title}</div>
-              <div style={{ color: '#a1a1aa', fontSize: '14px' }}>{card.desc}</div>
+            <div key={i} style={{ 
+              backgroundColor: 'white', padding: '40px 24px', borderRadius: '32px', // 更柔和的大圆角
+              border: '1px solid #f1f1f4', boxShadow: '0 10px 30px -5px rgba(0,0,0,0.03)', // 柔和虚化的阴影
+              display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center'
+            }}>
+              {/* 图标容器还原：截图中的超圆润卡片样式 */}
+              <div style={{ backgroundColor: '#f5f7ff', padding: '20px', borderRadius: '20px', marginBottom: '24px' }}>
+                {card.icon}
+              </div>
+              <div style={{ fontWeight: 'bold', fontSize: '19px', marginBottom: '10px', color: '#18181b' }}>{card.title}</div>
+              <div style={{ color: '#a1a1aa', fontSize: '15px', lineHeight: '1.5' }}>{card.desc}</div>
             </div>
           ))}
         </div>
-        <button style={{ backgroundColor: '#4338ca', color: 'white', padding: '18px 48px', borderRadius: '16px', border: 'none', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}>
+
+        {/* 开始按钮 - 增加了带有箭头的交互感 */}
+        <button style={{ 
+          backgroundColor: '#4338ca', color: 'white', padding: '18px 56px', borderRadius: '16px', 
+          border: 'none', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', gap: '10px',
+          boxShadow: '0 20px 25px -5px rgba(67, 56, 202, 0.3)',
+          transition: 'all 0.2s'
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#3730a3'; }}
+        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#4338ca'; }}
+        >
           {t.btn} <ArrowRight size={20} />
         </button>
       </div>
