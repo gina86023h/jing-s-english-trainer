@@ -8,24 +8,23 @@ const SidebarItem = ({ label, level, active, onClick }: any) => (
     onClick={onClick} 
     className={active ? 'sidebar-item active' : 'sidebar-item'}
     style={{ 
-      padding: '10px 20px', // 缩小间距以适应单页
+      padding: '8px 16px', // 进一步压缩高度
       backgroundColor: active ? '#4338ca' : 'transparent', 
-      borderRadius: '12px', 
+      borderRadius: '10px', 
       cursor: 'pointer', 
-      marginBottom: '2px', // 缩小项间距
+      marginBottom: '2px',
       color: active ? 'white' : '#71717a', 
       display: 'flex', 
-      flexDirection: 'row', 
       alignItems: 'center', 
       justifyContent: 'space-between',
       transition: 'all 0.2s'
     }}
   >
-    <div>
-      <div style={{ fontSize: '13px', fontWeight: 'bold' }}>{label}</div>
-      <div style={{ fontSize: '11px', opacity: active ? 0.8 : 0.6 }}>{level} Level</div>
+    <div style={{ overflow: 'hidden' }}>
+      <div style={{ fontSize: '13px', fontWeight: 'bold', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{label}</div>
+      <div style={{ fontSize: '11px', opacity: active ? 0.8 : 0.6 }}>{level}</div>
     </div>
-    {active && <span style={{ color: 'white', fontSize: '16px' }}>✦</span>}
+    {active && <span style={{ color: 'white', fontSize: '14px', marginLeft: '4px' }}>✦</span>}
   </div>
 ); 
 
@@ -41,9 +40,9 @@ export default function App() {
       h1_bot: "一步步提升",
       desc: "从KET到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。",
       cards: [
-        { icon: <BookText color="#4338ca" size={24} />, title: '结构化课程', desc: '从A2到C2分级' },
-        { icon: <Brain color="#4338ca" size={24} />, title: '即时AI反馈', desc: '详细的改正意见' },
-        { icon: <Target color="#4338ca" size={24} />, title: '考试导向', desc: '专为剑桥和雅思设计' }
+        { icon: <BookText color="#4338ca" size={22} />, title: '结构化课程', desc: '从A2到C2分级' },
+        { icon: <Brain color="#4338ca" size={22} />, title: '即时AI反馈', desc: '详细的改正意见' },
+        { icon: <Target color="#4338ca" size={22} />, title: '考试导向', desc: '专为剑桥和雅思设计' }
       ],
       btn: "开始练习"
     },
@@ -53,9 +52,9 @@ export default function App() {
       h1_bot: "Step by Step",
       desc: "Structured translation practice from KET to IELTS. Get instant, intelligent feedback on grammar and phrasing.",
       cards: [
-        { icon: <BookText color="#4338ca" size={24} />, title: 'Structured', desc: 'From A2 to C2' },
-        { icon: <Brain color="#4338ca" size={24} />, title: 'AI Feedback', desc: 'Instant corrections' },
-        { icon: <Target color="#4338ca" size={24} />, title: 'Exam Focus', desc: 'For IELTS & Cambridge' }
+        { icon: <BookText color="#4338ca" size={22} />, title: 'Structured', desc: 'From A2 to C2' },
+        { icon: <Brain color="#4338ca" size={22} />, title: 'AI Feedback', desc: 'Instant corrections' },
+        { icon: <Target color="#4338ca" size={22} />, title: 'Exam Focus', desc: 'For IELTS & Cambridge' }
       ],
       btn: "Get Started"
     }
@@ -66,27 +65,28 @@ export default function App() {
   return (
     <div style={{ 
       display: 'flex', 
-      height: '100vh', // 锁定视口高度，防止滚动
-      overflow: 'hidden', 
+      height: '100vh', 
+      width: '100vw',
+      overflow: 'hidden', // 强制禁止整页滚动
       backgroundColor: '#fcfcfd', 
-      fontFamily: 'sans-serif' 
+      fontFamily: 'system-ui, -apple-system, sans-serif' 
     }}>
       
-      {/* 侧边栏：优化布局防止溢出 */}
+      {/* 侧边栏：使用 flex-grow 确保底部内容可见 */}
       <div style={{ 
-        width: '240px', 
+        width: '230px', 
         backgroundColor: 'white', 
         borderRight: '1px solid #f1f1f4', 
-        padding: '20px', 
+        padding: '16px', 
         display: 'flex', 
         flexDirection: 'column',
-        height: '100%'
+        height: '100vh'
       }}>
-        <div style={{ marginBottom: '24px', paddingLeft: '16px' }}>
+        <div style={{ marginBottom: '16px', paddingLeft: '12px', marginTop: '8px' }}>
           <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: 'bold', letterSpacing: '0.5px' }}>英语水平等级</div>
         </div>
 
-        <div style={{ flex: 1, overflowY: 'auto' }}> {/* 仅在项目极多时内部微调 */}
+        <div style={{ flex: 1, overflowY: 'hidden' }}> {/* 禁止项目区滚动 */}
           {[
             { id: 'KET', label: 'Key (KET)', level: 'A2' },
             { id: 'B1', label: 'Preliminary (PET)', level: 'B1' },
@@ -99,14 +99,15 @@ export default function App() {
           ))}
         </div>
 
-        <div style={{ marginTop: '20px', borderTop: '1px solid #f4f4f5', paddingTop: '20px' }}>
+        {/* 侧边栏底部固定内容 */}
+        <div style={{ borderTop: '1px solid #f4f4f5', paddingTop: '16px', paddingBottom: '8px' }}>
           {['学习进度', '错题本'].map((item) => (
             <div
               key={item}
               onClick={() => setActiveTab(item)}
               style={{
                 padding: '10px 16px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '12px',
-                cursor: 'pointer', borderRadius: '10px', marginBottom: '4px',
+                cursor: 'pointer', borderRadius: '10px', marginBottom: '2px',
                 backgroundColor: activeTab === item ? '#4338ca' : 'transparent',
                 color: activeTab === item ? 'white' : '#71717a'
               }}
@@ -116,13 +117,13 @@ export default function App() {
             </div>
           ))}
 
-          <div style={{ marginTop: '16px', display: 'flex', gap: '6px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
+          <div style={{ marginTop: '12px', display: 'flex', gap: '4px', padding: '3px', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
             {['EN', 'CN'].map(lang => (
               <div 
                 key={lang}
                 onClick={() => setActiveLanguage(lang)}
                 style={{ 
-                  flex: 1, textAlign: 'center', fontSize: '11px', padding: '6px', cursor: 'pointer', borderRadius: '6px',
+                  flex: 1, textAlign: 'center', fontSize: '11px', padding: '5px', cursor: 'pointer', borderRadius: '6px',
                   backgroundColor: activeLanguage === lang ? '#4338ca' : 'transparent', 
                   color: activeLanguage === lang ? 'white' : '#71717a',
                   fontWeight: 'bold'
@@ -134,67 +135,75 @@ export default function App() {
         </div>
       </div>
 
-      {/* 主内容区：消除滚动条，文字单行 */}
+      {/* 主内容区：使用 vh 动态控制间距 */}
       <div style={{ 
         flex: 1, 
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center', 
-        justifyContent: 'center', 
-        padding: '20px' 
+        justifyContent: 'center',
+        padding: '0 40px',
+        height: '100vh'
       }}>
         
-        <div style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold', marginBottom: '3vh' }}>
+        <div style={{ 
+          backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', 
+          fontSize: '12px', fontWeight: 'bold', marginBottom: '3vh' 
+        }}>
           {t.tag}
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <h1 style={{ fontSize: '56px', fontWeight: '900', color: '#18181b', margin: 0, lineHeight: 1 }}>
+          <h1 style={{ fontSize: 'min(52px, 6vh)', fontWeight: '900', color: '#18181b', margin: 0, lineHeight: 1.1 }}>
             {t.h1_top}
           </h1>
           <h1 style={{ 
-            fontSize: '56px', fontWeight: '900', margin: '10px 0 25px 0', 
+            fontSize: 'min(52px, 6vh)', fontWeight: '900', margin: '1vh 0 2vh 0', 
             background: 'linear-gradient(to right, #4338ca, #6366f1)', 
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-            letterSpacing: '6px', lineHeight: 1
+            letterSpacing: '6px', lineHeight: 1.1
           }}>
             {t.h1_bot}
           </h1>
           
-          {/* 图一优化：文字单行，不可换行 */}
           <p style={{ 
             color: '#71717a', 
-            fontSize: '16px', 
+            fontSize: 'min(16px, 2vh)', 
             margin: '0 auto', 
             whiteSpace: 'nowrap', // 强制单行
-            opacity: 0.9
+            maxWidth: '100%'
           }}>
             {t.desc}
           </p>
         </div>
 
-        {/* 紧凑版卡片组 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 220px)', gap: '20px', margin: '5vh 0' }}>
+        {/* 紧凑版卡片组：高度自适应 */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(3, min(220px, 25vw))', 
+          gap: '20px', 
+          margin: '4vh 0' 
+        }}>
           {t.cards.map((card, i) => (
             <div key={i} style={{ 
-              backgroundColor: 'white', padding: '24px 16px', borderRadius: '24px', 
+              backgroundColor: 'white', padding: '2vh 16px', borderRadius: '24px', 
               border: '1px solid #f1f1f4', boxShadow: '0 4px 20px -5px rgba(0,0,0,0.02)',
               display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center'
             }}>
-              <div style={{ backgroundColor: '#f5f7ff', padding: '12px', borderRadius: '16px', marginBottom: '16px' }}>
+              <div style={{ backgroundColor: '#f5f7ff', padding: '12px', borderRadius: '16px', marginBottom: '12px' }}>
                 {card.icon}
               </div>
-              <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '6px', color: '#18181b' }}>{card.title}</div>
-              <div style={{ color: '#a1a1aa', fontSize: '13px' }}>{card.desc}</div>
+              <div style={{ fontWeight: 'bold', fontSize: '15px', marginBottom: '4px', color: '#18181b' }}>{card.title}</div>
+              <div style={{ color: '#a1a1aa', fontSize: '12px', lineHeight: 1.3 }}>{card.desc}</div>
             </div>
           ))}
         </div>
 
         <button style={{ 
-          backgroundColor: '#4338ca', color: 'white', padding: '16px 48px', borderRadius: '14px', 
-          border: 'none', fontSize: '17px', fontWeight: 'bold', cursor: 'pointer',
+          backgroundColor: '#4338ca', color: 'white', padding: 'min(14px, 2vh) 40px', borderRadius: '12px', 
+          border: 'none', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer',
           display: 'flex', alignItems: 'center', gap: '8px',
-          boxShadow: '0 15px 20px -5px rgba(67, 56, 202, 0.25)'
+          boxShadow: '0 10px 15px -3px rgba(67, 56, 202, 0.2)'
         }}>
           {t.btn} <ArrowRight size={18} />
         </button>
