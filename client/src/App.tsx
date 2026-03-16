@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { 
-  Search, Bell, ChevronRight, GraduationCap, Settings, HelpCircle, 
-  LineChart, BookOpen, Star, Brain, Target 
+  LineChart, BookOpen 
 } from 'lucide-react';
 
+// 侧边栏子项组件
 const SidebarItem = ({ label, level, active, onClick }: any) => (
   <div 
     onClick={onClick} 
@@ -33,10 +33,11 @@ const SidebarItem = ({ label, level, active, onClick }: any) => (
 export default function App() {
   const [activeTab, setActiveTab] = useState('');
   const [activeLevel, setActiveLevel] = useState('FCE');
-  const [activeLanguage, setActiveLanguage] = useState('CN');
+  const [activeLanguage, setActiveLanguage] = useState('CN'); // 语言切换状态
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc', fontFamily: 'sans-serif' }}>
+      
       {/* 侧边栏 */}
       <div style={{ width: '260px', backgroundColor: 'white', borderRight: '1px solid #e4e4e7', padding: '24px', display: 'flex', flexDirection: 'column' }}>
         <style dangerouslySetInnerHTML={{ __html: ".sidebar-item:not(.active):hover { background-color: #f4f4f5 !important; } .sidebar-sub-item:hover { background-color: #f4f4f5 !important; color: #18181b !important; }" }} />
@@ -61,15 +62,8 @@ export default function App() {
               key={item}
               onClick={() => setActiveTab(item)}
               style={{
-                padding: '12px 16px',
-                fontSize: '14px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                cursor: 'pointer',
-                borderRadius: '12px',
-                transition: 'all 0.2s',
-                marginBottom: '4px',
+                padding: '12px 16px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '12px',
+                cursor: 'pointer', borderRadius: '12px', transition: 'all 0.2s', marginBottom: '4px',
                 backgroundColor: activeTab === item ? '#4338ca' : 'transparent',
                 color: activeTab === item ? 'white' : '#71717a'
               }}
@@ -81,7 +75,7 @@ export default function App() {
             </div>
           ))}
 
-          {/* 语言切换栏交互优化 */}
+          {/* 语言切换栏：带点击效果和指针反馈 */}
           <div style={{ marginTop: '20px', display: 'flex', gap: '8px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '8px' }}>
             <div 
               onClick={() => setActiveLanguage('EN')}
@@ -105,7 +99,7 @@ export default function App() {
         </div>
       </div>
 
-      {/* 主内容区 - 恢复精美视觉设计 */}
+      {/* 主内容区：全方位恢复视觉效果 */}
       <div style={{ flex: 1, padding: '60px', overflowY: 'auto', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ maxWidth: '800px', width: '100%', textAlign: 'center' }}>
           
@@ -115,47 +109,53 @@ export default function App() {
             </span>
             
             <h1 style={{ 
-              fontSize: '48px', fontWeight: '800', marginTop: '20px', 
+              fontSize: '52px', fontWeight: '800', marginTop: '24px', 
               background: 'linear-gradient(to bottom, #1e293b 20%, #4338ca 100%)', 
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-              letterSpacing: '-1px'
+              letterSpacing: '-1.5px', lineHeight: 1.1
             }}>
-              欢迎来到 Jing's English Trainer
+              {activeLanguage === 'CN' ? "欢迎来到 Jing's English Trainer" : "Welcome to Jing's English Trainer"}
             </h1>
             
-            <p style={{ color: '#71717a', fontSize: '18px', marginTop: '16px', lineHeight: '1.6' }}>
-              从 KET 到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。
+            <p style={{ color: '#71717a', fontSize: '20px', marginTop: '20px', lineHeight: '1.6' }}>
+              {activeLanguage === 'CN' 
+                ? "从 KET 到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。" 
+                : "Structured translation practice from KET to IELTS. Get instant, intelligent feedback on grammar, vocabulary, and phrasing."}
             </p>
           </div>
 
-          {/* 功能卡片网格 */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '48px' }}>
+          {/* 功能卡片 */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '24px', marginBottom: '48px' }}>
             {[
-              { title: '结构化课程', desc: 'A2到C2分级练习' },
-              { title: '即时AI反馈', desc: '详细改正意见' },
-              { title: '考试导向', desc: '专为剑桥雅思设计' }
+              { cn: '结构化课程', en: 'Structured Courses', desc_cn: 'A2到C2分级练习', desc_en: 'A2 to C2 graded practice' },
+              { cn: '即时AI反馈', en: 'Instant AI Feedback', desc_cn: '详细改正意见', desc_en: 'Detailed correction advice' },
+              { cn: '考试导向', en: 'Exam Oriented', desc_cn: '专为剑桥雅思设计', desc_en: 'Designed for Cambridge & IELTS' }
             ].map((card, i) => (
               <div key={i} style={{ 
-                backgroundColor: 'white', padding: '24px', borderRadius: '16px', 
-                border: '1px solid #e4e4e7', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                backgroundColor: 'white', padding: '32px 24px', borderRadius: '20px', 
+                border: '1px solid #e4e4e7', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.04)',
                 textAlign: 'left'
               }}>
-                <div style={{ fontWeight: 'bold', fontSize: '16px', marginBottom: '4px', color: '#18181b' }}>{card.title}</div>
-                <div style={{ color: '#71717a', fontSize: '13px' }}>{card.desc}</div>
+                <div style={{ fontWeight: 'bold', fontSize: '17px', marginBottom: '8px', color: '#18181b' }}>
+                  {activeLanguage === 'CN' ? card.cn : card.en}
+                </div>
+                <div style={{ color: '#71717a', fontSize: '14px' }}>
+                  {activeLanguage === 'CN' ? card.desc_cn : card.desc_en}
+                </div>
               </div>
             ))}
           </div>
 
           <button style={{ 
-            backgroundColor: '#4338ca', color: 'white', padding: '16px 48px', borderRadius: '14px', 
+            backgroundColor: '#4338ca', color: 'white', padding: '18px 56px', borderRadius: '16px', 
             border: 'none', fontSize: '18px', fontWeight: 'bold', cursor: 'pointer',
-            boxShadow: '0 10px 15px -3px rgba(67, 56, 202, 0.3)',
-            transition: 'transform 0.2s'
+            boxShadow: '0 20px 25px -5px rgba(67, 56, 202, 0.2)',
+            transition: 'all 0.2s'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-          onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.backgroundColor = '#3730a3'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.backgroundColor = '#4338ca'; }}
           >
-            开始练习
+            {activeLanguage === 'CN' ? '开始练习' : 'Get Started'}
           </button>
         </div>
       </div>
