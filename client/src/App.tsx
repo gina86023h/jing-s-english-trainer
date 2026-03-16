@@ -65,19 +65,4 @@ onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundCo
   );
 };
 
-          
-export default App;
-            <span style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold' }}>✦ 智能评估</span>
-          <h1 style={{ fontSize: '48px', fontWeight: '800', marginTop: '20px', background: 'linear-gradient(to bottom, #1e293b 20%, #4338ca 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: '1.2' }}>掌握英文翻译<br/>一步步提升</h1>
-            <p style={{ color: '#71717a', fontSize: '18px', marginTop: '16px' }}>从 KET 到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。</p>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px', marginBottom: '40px' }}>
-            <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #e4e4e7' }}><strong>结构化课程</strong><br/><small>A2到C2分级</small></div>
-            <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #e4e4e7' }}><strong>即时AI反馈</strong><br/><small>详细改正意见</small></div>
-            <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', border: '1px solid #e4e4e7' }}><strong>考试导向</strong><br/><small>专为剑桥雅思设计</small></div>
-          </div>
-    </div>
-  );
-}
-
 export default App;
