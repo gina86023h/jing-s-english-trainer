@@ -1,155 +1,147 @@
 import React, { useState } from 'react';
 import { 
-  LineChart, BookOpen, BookText, Brain, Target, ArrowRight, 
-  ChevronLeft, Send, RefreshCw, Lightbulb, CheckCircle2, Sparkles, 
-  Languages, ClipboardList, TrendingUp
+  Languages, TrendingUp, ClipboardList, BookOpen, Brain, Target, 
+  ArrowRight, ChevronLeft, Sparkles, BookText, Lightbulb, CheckCircle2 
 } from 'lucide-react';
 
 export default function App() {
   const [activeLevel, setActiveLevel] = useState('CAE');
   const [activeLanguage, setActiveLanguage] = useState('CN');
   const [isStarted, setIsStarted] = useState(false);
-  const [hoverItem, setHoverItem] = useState(null);
   const [userInput, setUserInput] = useState('');
-
-  // 1. 定义侧边栏数据，确保“学习进度”和“错题本”在这里
-  const menuItems = [
-    { id: 'progress', icon: <TrendingUp size={18} />, label: '学习进度' },
-    { id: 'wrong', icon: <ClipboardList size={18} />, label: '错题本' }
-  ];
+  
+  // 模拟题目数据
+  const question = {
+    cn: "不可否认的是，人工智能的发展不仅改变了我们的工作方式，也深刻地影响了我们的生活方式。",
+    hint: "Use 'not only... but also' structure."
+  };
 
   return (
-    /* 最外层容器：锁定屏幕，不准滚动 */
     <div style={{ 
-      width: '100vw', height: '100vh', display: 'flex', overflow: 'hidden',
-      backgroundColor: '#fcfcfd', fontFamily: '-apple-system, sans-serif'
+      display: 'flex', width: '100vw', height: '100vh', 
+      overflow: 'hidden', backgroundColor: '#fcfcfd',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'
     }}>
       
-      {/* --- 左侧导航栏：固定宽度，自己内部滚动 --- */}
+      {/* --- 左侧侧边栏 --- */}
       <nav style={{ 
-        width: '280px', height: '100%', backgroundColor: 'white', borderRight: '1px solid #f1f1f4', 
-        display: 'flex', flexDirection: 'column', flexShrink: 0
+        width: '280px', height: '100%', backgroundColor: 'white', 
+        borderRight: '1px solid #f1f1f4', display: 'flex', flexDirection: 'column', flexShrink: 0 
       }}>
-        <div style={{ padding: '32px 24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ backgroundColor: '#eef2ff', padding: '8px', borderRadius: '12px' }}>
-              <Languages size={24} color="#4338ca" />
-            </div>
-            <span style={{ fontWeight: '800', fontSize: '20px', color: '#18181b' }}>LingoFlow</span>
+        {/* Logo 部分 */}
+        <div style={{ padding: '32px 24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ backgroundColor: '#f0f2ff', padding: '8px', borderRadius: '12px' }}>
+            <Languages size={22} color="#4338ca" />
           </div>
+          <span style={{ fontWeight: '800', fontSize: '19px', color: '#18181b', letterSpacing: '-0.02em' }}>LingoFlow</span>
         </div>
 
-        {/* 等级列表区：独立滚动 */}
+        {/* 等级列表 - 严格参考 image_bbc3b5 字体样式 */}
         <div style={{ flex: 1, overflowY: 'auto', padding: '0 16px' }}>
-          <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: '800', marginBottom: '16px', paddingLeft: '8px' }}>级别选择</div>
-          {['KET', 'PET', 'FCE', 'CAE', 'CPE', 'IELTS'].map((lvl) => {
-            const isActive = activeLevel === lvl;
-            return (
-              <div 
-                key={lvl}
-                onClick={() => { setActiveLevel(lvl); setIsStarted(false); }}
-                onMouseEnter={() => setHoverItem(lvl)}
-                onMouseLeave={() => setHoverItem(null)}
-                style={{ 
-                  padding: '12px 16px', borderRadius: '14px', cursor: 'pointer', marginBottom: '4px',
-                  backgroundColor: isActive ? '#4338ca' : (hoverItem === lvl ? '#f4f4f5' : 'transparent'),
-                  color: isActive ? 'white' : '#71717a', transition: '0.2s', fontWeight: '600'
-                }}
-              >
-                {lvl} Level
-              </div>
-            );
-          })}
-        </div>
-
-        {/* 底部固定区：学习进度、错题本、语言切换 */}
-        <div style={{ padding: '24px 16px', borderTop: '1px solid #f1f1f4' }}>
-          {menuItems.map(item => (
+          <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: '700', marginBottom: '16px', paddingLeft: '12px' }}>英语水平等级</div>
+          {[
+            { id: 'KET', label: 'Key (KET)', sub: 'A2 Level' },
+            { id: 'PET', label: 'Preliminary (PET)', sub: 'B1 Level' },
+            { id: 'FCE', label: 'First (FCE)', sub: 'B2 Level' },
+            { id: 'CAE', label: 'Advanced (CAE)', sub: 'C1 Level' },
+            { id: 'CPE', label: 'Proficiency (CPE)', sub: 'C2 Level' },
+            { id: 'IELTS', label: 'IELTS Academic', sub: 'All bands' }
+          ].map((item) => (
             <div 
               key={item.id}
-              onMouseEnter={() => setHoverItem(item.id)}
-              onMouseLeave={() => setHoverItem(null)}
+              onClick={() => { setActiveLevel(item.id); setIsStarted(false); }}
               style={{ 
-                display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', 
-                color: '#71717a', fontSize: '14px', cursor: 'pointer', borderRadius: '12px',
-                backgroundColor: hoverItem === item.id ? '#f4f4f5' : 'transparent', marginBottom: '4px'
+                padding: '12px 16px', borderRadius: '14px', cursor: 'pointer', marginBottom: '4px',
+                backgroundColor: activeLevel === item.id ? '#4338ca' : 'transparent',
+                color: activeLevel === item.id ? 'white' : '#3f3f46',
+                transition: 'all 0.2s'
               }}
             >
-              {item.icon} {item.label}
+              <div style={{ fontWeight: '700', fontSize: '15px' }}>{item.label}</div>
+              <div style={{ fontSize: '12px', opacity: 0.7, marginTop: '2px' }}>{item.sub}</div>
             </div>
           ))}
+        </div>
 
-          <div style={{ display: 'flex', backgroundColor: '#f1f5f9', padding: '4px', borderRadius: '12px', marginTop: '16px' }}>
-            <button onClick={() => setActiveLanguage('EN')} style={{ flex: 1, padding: '10px', border: 'none', borderRadius: '9px', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: activeLanguage === 'EN' ? 'white' : 'transparent', color: activeLanguage === 'EN' ? '#18181b' : '#71717a', boxShadow: activeLanguage === 'EN' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none' }}>EN</button>
-            <button onClick={() => setActiveLanguage('CN')} style={{ flex: 1, padding: '10px', border: 'none', borderRadius: '9px', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer', backgroundColor: activeLanguage === 'CN' ? '#4338ca' : 'transparent', color: activeLanguage === 'CN' ? 'white' : '#71717a' }}>中文</button>
+        {/* 底部功能区 - 修复切换无效问题 */}
+        <div style={{ padding: '24px 16px', borderTop: '1px solid #f1f1f4' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', color: '#71717a', fontSize: '14px', fontWeight: '600', cursor: 'pointer' }}>
+            <TrendingUp size={18} /> 学习进度
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', color: '#71717a', fontSize: '14px', fontWeight: '600', cursor: 'pointer', marginBottom: '16px' }}>
+            <ClipboardList size={18} /> 错题本
+          </div>
+          
+          {/* 中英文切换 - 修复逻辑 */}
+          <div style={{ display: 'flex', backgroundColor: '#f1f5f9', padding: '4px', borderRadius: '12px' }}>
+            <button 
+              onClick={() => setActiveLanguage('EN')}
+              style={{ 
+                flex: 1, padding: '10px', border: 'none', borderRadius: '9px', fontSize: '12px', fontWeight: '800', cursor: 'pointer',
+                backgroundColor: activeLanguage === 'EN' ? 'white' : 'transparent',
+                color: activeLanguage === 'EN' ? '#18181b' : '#71717a',
+                boxShadow: activeLanguage === 'EN' ? '0 2px 4px rgba(0,0,0,0.05)' : 'none',
+                transition: '0.2s'
+              }}
+            >GB EN</button>
+            <button 
+              onClick={() => setActiveLanguage('CN')}
+              style={{ 
+                flex: 1, padding: '10px', border: 'none', borderRadius: '9px', fontSize: '12px', fontWeight: '800', cursor: 'pointer',
+                backgroundColor: activeLanguage === 'CN' ? '#4338ca' : 'transparent',
+                color: activeLanguage === 'CN' ? 'white' : '#71717a',
+                transition: '0.2s'
+              }}
+            >CN 中文</button>
           </div>
         </div>
       </nav>
 
-      {/* --- 右侧内容区：锁定高度，内部滚动 --- */}
-      <main style={{ 
-        flex: 1, height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column' 
-      }}>
+      {/* --- 右侧内容区：严禁外层滚动 --- */}
+      <main style={{ flex: 1, height: '100%', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
         {!isStarted ? (
-          /* 1. 首页视图 */
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px' }}>
-            <div style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: 'bold', marginBottom: '24px' }}>● 智能评估系统</div>
-            <h1 style={{ fontSize: '56px', fontWeight: '900', textAlign: 'center', lineHeight: 1.1, margin: 0, color: '#18181b' }}>
+            <div style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: '800', marginBottom: '24px' }}>● 智能评估</div>
+            <h1 style={{ fontSize: '52px', fontWeight: '900', textAlign: 'center', lineHeight: 1.1, color: '#18181b', marginBottom: '24px' }}>
               掌握英文翻译<br/><span style={{ color: '#4338ca' }}>一步步提升</span>
             </h1>
-            
-            <div style={{ display: 'flex', gap: '24px', margin: '48px 0' }}>
-               <FeatureCard icon={<BookOpen size={24}/>} title="分级练习" sub="KET 到雅思全覆盖" />
-               <FeatureCard icon={<Brain size={24}/>} title="AI 纠错" sub="即时语法深度反馈" />
-               <FeatureCard icon={<Target size={24}/>} title="提分神器" sub="专为考试场景优化" />
-            </div>
-
+            <p style={{ color: '#71717a', fontSize: '17px', maxWidth: '500px', textAlign: 'center', marginBottom: '48px', lineHeight: 1.6 }}>
+              从KET到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。
+            </p>
             <button 
               onClick={() => setIsStarted(true)}
-              style={{ backgroundColor: '#4338ca', color: 'white', padding: '20px 56px', borderRadius: '18px', border: 'none', fontWeight: 'bold', fontSize: '20px', cursor: 'pointer', boxShadow: '0 20px 25px -5px rgba(67, 56, 202, 0.2)' }}
+              style={{ backgroundColor: '#4338ca', color: 'white', padding: '18px 48px', borderRadius: '16px', border: 'none', fontWeight: '800', fontSize: '18px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '12px', boxShadow: '0 10px 20px -5px rgba(67, 56, 202, 0.3)' }}
             >
-              开始练习 →
+              开始练习 <ArrowRight size={20} />
             </button>
           </div>
         ) : (
-          /* 2. 练习视图 */
-          <div style={{ width: '100%', maxWidth: '850px', margin: '0 auto', padding: '60px 24px' }}>
-             <button onClick={() => setIsStarted(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', color: '#71717a', cursor: 'pointer', marginBottom: '40px', fontSize: '15px', fontWeight: '600' }}>
-               <ChevronLeft size={20}/> 返回主页
-             </button>
+          <div style={{ maxWidth: '800px', margin: '0 auto', width: '100%', padding: '60px 24px' }}>
+            <button onClick={() => setIsStarted(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', color: '#71717a', cursor: 'pointer', marginBottom: '40px', fontSize: '14px', fontWeight: '700' }}>
+              <ChevronLeft size={18}/> 返回 {activeLevel}
+            </button>
 
-             <div style={{ backgroundColor: 'white', borderRadius: '32px', border: '1px solid #f1f1f4', padding: '48px', marginBottom: '32px', boxShadow: '0 4px 6px rgba(0,0,0,0.02)' }}>
-               <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                 <Sparkles color="#4338ca" size={24} style={{ marginTop: '4px' }} />
-                 <div>
-                   <div style={{ fontSize: '12px', color: '#a1a1aa', fontWeight: '800', marginBottom: '12px', textTransform: 'uppercase' }}>翻译题目 ({activeLevel})</div>
-                   <div style={{ fontSize: '28px', fontWeight: '700', color: '#18181b', lineHeight: 1.4 }}>“无论科技如何进步，人类对知识的渴望始终如一。”</div>
-                 </div>
-               </div>
-             </div>
+            <div style={{ backgroundColor: 'white', borderRadius: '28px', border: '1px solid #f1f1f4', padding: '40px', marginBottom: '32px', position: 'relative' }}>
+              <div style={{ color: '#e2e8f0', position: 'absolute', left: '30px', top: '35px' }}><BookText size={36}/></div>
+              <div style={{ paddingLeft: '40px' }}>
+                <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: '800', marginBottom: '10px' }}>翻译成英文</div>
+                <div style={{ fontSize: '26px', fontWeight: '700', color: '#18181b', lineHeight: 1.4 }}>{question.cn}</div>
+              </div>
+              <div style={{ marginTop: '30px', display: 'flex', alignItems: 'center', gap: '12px', backgroundColor: '#fffbeb', padding: '16px', borderRadius: '14px', color: '#92400e', fontSize: '14px', border: '1px solid #fef3c7' }}>
+                <Lightbulb size={18} />
+                <span><strong>workspace.hint:</strong> {question.hint}</span>
+              </div>
+            </div>
 
-             <textarea 
-               value={userInput}
-               onChange={(e) => setUserInput(e.target.value)}
-               placeholder="在此处开始你的翻译..."
-               style={{ width: '100%', height: '240px', padding: '32px', borderRadius: '32px', border: '2px solid #eef2ff', fontSize: '20px', outline: 'none', resize: 'none', boxSizing: 'border-box', transition: '0.2s' }}
-               onFocus={(e) => e.target.style.borderColor = '#4338ca'}
-               onBlur={(e) => e.target.style.borderColor = '#eef2ff'}
-             />
+            <textarea 
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+              placeholder="在此输入翻译..."
+              style={{ width: '100%', height: '220px', padding: '30px', borderRadius: '28px', border: '2px solid #eef2ff', fontSize: '19px', outline: 'none', resize: 'none', boxSizing: 'border-box' }}
+            />
           </div>
         )}
       </main>
-    </div>
-  );
-}
-
-// 首页小卡片组件
-function FeatureCard({ icon, title, sub }) {
-  return (
-    <div style={{ backgroundColor: 'white', padding: '32px 24px', borderRadius: '24px', border: '1px solid #f1f1f4', textAlign: 'center', width: '180px', boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
-      <div style={{ color: '#4338ca', marginBottom: '16px', display: 'flex', justifyContent: 'center' }}>{icon}</div>
-      <div style={{ fontWeight: '800', fontSize: '16px', marginBottom: '6px', color: '#18181b' }}>{title}</div>
-      <div style={{ fontSize: '13px', color: '#a1a1aa' }}>{sub}</div>
     </div>
   );
 }
