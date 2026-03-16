@@ -62,10 +62,11 @@ onMouseLeave={(e) => { if(activeTab !== item) e.currentTarget.style.backgroundCo
 <div style={{ flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px' }}>GB EN</div>
 <div style={{ flex: 1, textAlign: 'center', fontSize: '12px', padding: '6px', backgroundColor: '#4338ca', color: 'white', borderRadius: '6px' }}>CN 中文</div>
 </div>
-      </div>
-      <div style={{ flex: 1, padding: '60px' }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          <div style={{ marginBottom: '40px' }}>
+  </div>
+);
+};
+
+export default App;
             <span style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold' }}>✦ 智能评估</span>
           <h1 style={{ fontSize: '48px', fontWeight: '800', marginTop: '20px', background: 'linear-gradient(to bottom, #1e293b 20%, #4338ca 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: '1.2' }}>掌握英文翻译<br/>一步步提升</h1>
             <p style={{ color: '#71717a', fontSize: '18px', marginTop: '16px' }}>从 KET 到雅思的结构化翻译练习。获得即时、智能的语法、词汇和措辞反馈。</p>
