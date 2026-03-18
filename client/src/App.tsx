@@ -4,21 +4,20 @@ import {
   LineChart, BookOpen 
 } from 'lucide-react';
 
-// --- 子组件：侧边栏项 ---
+// --- 子组件：侧边栏项 (保持锁定样式) ---
 const SidebarItem = ({ label, level, active, onClick, icon: Icon }) => {
   const [isHovered, setIsHovered] = useState(false);
-  
   return (
     <div 
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ 
-        padding: '10px 16px', // 微调 padding 压缩高度
+        padding: '10px 16px',
         backgroundColor: active ? '#4338ca' : (isHovered ? '#f4f4f5' : 'transparent'), 
         borderRadius: '12px', 
         cursor: 'pointer', 
-        marginBottom: '4px', // 减小间距
+        marginBottom: '4px',
         color: active ? 'white' : '#71717a', 
         display: 'flex', 
         alignItems: 'center', 
@@ -41,7 +40,7 @@ export default function App() {
   const [activeLevel, setActiveLevel] = useState('FCE');
   const [activeLanguage, setActiveLanguage] = useState('CN');
   const [isStarted, setIsStarted] = useState(false);
-  const [activeTab, setActiveTab] = useState('practice'); // 用于切换练习或错题本
+  const [activeTab, setActiveTab] = useState('practice');
   const [userInput, setUserInput] = useState('');
 
   const content = {
@@ -86,28 +85,7 @@ export default function App() {
         display: 'flex', flexDirection: 'column', height: '100%', padding: '20px 16px', boxSizing: 'border-box' 
       }}>
         
-        {/* 新增：Learning Tools 部分 */}
-        <div style={{ marginBottom: '16px', paddingLeft: '8px' }}>
-          <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: 'bold', letterSpacing: '0.5px', marginBottom: '12px' }}>
-            {t.toolHeader}
-          </div>
-          <SidebarItem 
-            label={t.tools.progress} 
-            icon={LineChart}
-            active={activeTab === 'progress'}
-            onClick={() => setActiveTab('progress')}
-          />
-          <SidebarItem 
-            label={t.tools.notebook} 
-            icon={BookOpen}
-            active={activeTab === 'notebook'}
-            onClick={() => setActiveTab('notebook')}
-          />
-        </div>
-
-        <div style={{ height: '1px', backgroundColor: '#f4f4f5', margin: '8px 8px 20px 8px' }} />
-
-        {/* 英语等级部分 */}
+        {/* A. 顶部：英语等级部分 */}
         <div style={{ marginBottom: '12px', paddingLeft: '8px' }}>
           <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: 'bold', letterSpacing: '0.5px' }}>
             {t.levelHeader}
@@ -135,8 +113,29 @@ export default function App() {
           ))}
         </div>
 
-        {/* 底部语言切换 */}
-        <div style={{ marginTop: 'auto', paddingTop: '16px' }}>
+        {/* B. 下方：Learning Tools (移动到此处) */}
+        <div style={{ marginTop: 'auto', paddingTop: '16px', paddingLeft: '8px' }}>
+          <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: 'bold', letterSpacing: '0.5px', marginBottom: '12px' }}>
+            {t.toolHeader}
+          </div>
+          <SidebarItem 
+            label={t.tools.progress} 
+            icon={LineChart}
+            active={activeTab === 'progress'}
+            onClick={() => setActiveTab('progress')}
+          />
+          <SidebarItem 
+            label={t.tools.notebook} 
+            icon={BookOpen}
+            active={activeTab === 'notebook'}
+            onClick={() => setActiveTab('notebook')}
+          />
+        </div>
+
+        <div style={{ height: '1px', backgroundColor: '#f4f4f5', margin: '16px 8px' }} />
+
+        {/* C. 底部语言切换 */}
+        <div style={{ paddingBottom: '4px' }}>
           <div style={{ display: 'flex', gap: '4px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '12px' }}>
             {['EN', 'CN'].map(lang => (
               <button 
@@ -155,13 +154,17 @@ export default function App() {
         </div>
       </nav>
 
-      {/* 2. 右侧动态内容区 */}
+      {/* 2. 右侧动态内容区 (保持不变) */}
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', boxSizing: 'border-box', overflowY: 'auto' }}>
         {activeTab === 'notebook' ? (
-          /* --- 错题本界面预览 --- */
           <div style={{ flex: 1, padding: '40px' }}>
             <h1 style={{ color: '#18181b' }}>{t.tools.notebook}</h1>
             <p style={{ color: '#71717a', marginTop: '12px' }}>您的翻译记录将在这里显示。</p>
+          </div>
+        ) : activeTab === 'progress' ? (
+          <div style={{ flex: 1, padding: '40px' }}>
+            <h1 style={{ color: '#18181b' }}>{t.tools.progress}</h1>
+            <p style={{ color: '#71717a', marginTop: '12px' }}>这里是您的学习进度看板。</p>
           </div>
         ) : !isStarted ? (
           /* --- 欢迎主页 --- */
