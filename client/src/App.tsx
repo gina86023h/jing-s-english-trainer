@@ -4,9 +4,10 @@ import {
   LineChart, BookOpen 
 } from 'lucide-react';
 
-// --- 子组件：侧边栏项 (保持锁定样式) ---
+// --- 子组件：侧边栏项 ---
 const SidebarItem = ({ label, level, active, onClick, icon: Icon }) => {
   const [isHovered, setIsHovered] = useState(false);
+  
   return (
     <div 
       onClick={onClick}
@@ -40,7 +41,7 @@ export default function App() {
   const [activeLevel, setActiveLevel] = useState('FCE');
   const [activeLanguage, setActiveLanguage] = useState('CN');
   const [isStarted, setIsStarted] = useState(false);
-  const [activeTab, setActiveTab] = useState('practice');
+  const [activeTab, setActiveTab] = useState('practice'); 
   const [userInput, setUserInput] = useState('');
 
   const content = {
@@ -79,13 +80,13 @@ export default function App() {
       fontFamily: '"PingFang SC", "Microsoft YaHei", sans-serif'
     }}>
       
-      {/* 1. 左侧栏 */}
+      {/* 1. 左侧栏 (保持锁定) */}
       <nav style={{ 
         width: '260px', backgroundColor: 'white', borderRight: '1px solid #f1f1f4', 
         display: 'flex', flexDirection: 'column', height: '100%', padding: '20px 16px', boxSizing: 'border-box' 
       }}>
         
-        {/* A. 顶部：英语等级部分 */}
+        {/* 顶部：英语等级部分 (保持锁定) */}
         <div style={{ marginBottom: '12px', paddingLeft: '8px' }}>
           <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: 'bold', letterSpacing: '0.5px' }}>
             {t.levelHeader}
@@ -113,8 +114,11 @@ export default function App() {
           ))}
         </div>
 
-        {/* B. 下方：Learning Tools (移动到此处) */}
-        <div style={{ marginTop: 'auto', paddingTop: '16px', paddingLeft: '8px' }}>
+        {/* 中间分割线 */}
+        <div style={{ height: '1px', backgroundColor: '#f4f4f5', margin: '20px 8px' }} />
+
+        {/* 底部：Learning Tools 部分 (保持锁定) */}
+        <div style={{ paddingLeft: '8px', marginBottom: '8px' }}>
           <div style={{ fontSize: '11px', color: '#a1a1aa', fontWeight: 'bold', letterSpacing: '0.5px', marginBottom: '12px' }}>
             {t.toolHeader}
           </div>
@@ -132,10 +136,8 @@ export default function App() {
           />
         </div>
 
-        <div style={{ height: '1px', backgroundColor: '#f4f4f5', margin: '16px 8px' }} />
-
-        {/* C. 底部语言切换 */}
-        <div style={{ paddingBottom: '4px' }}>
+        {/* 语言切换 (保持锁定) */}
+        <div style={{ paddingTop: '16px', borderTop: '1px solid #f4f4f5' }}>
           <div style={{ display: 'flex', gap: '4px', padding: '4px', backgroundColor: '#f1f5f9', borderRadius: '12px' }}>
             {['EN', 'CN'].map(lang => (
               <button 
@@ -154,20 +156,22 @@ export default function App() {
         </div>
       </nav>
 
-      {/* 2. 右侧动态内容区 (保持不变) */}
+      {/* 2. 右侧动态内容区 */}
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column', boxSizing: 'border-box', overflowY: 'auto' }}>
         {activeTab === 'notebook' ? (
+          /* 错题本页预览 (保持锁定) */
           <div style={{ flex: 1, padding: '40px' }}>
             <h1 style={{ color: '#18181b' }}>{t.tools.notebook}</h1>
             <p style={{ color: '#71717a', marginTop: '12px' }}>您的翻译记录将在这里显示。</p>
           </div>
         ) : activeTab === 'progress' ? (
+          /* 学习进度页预览 (保持锁定) */
           <div style={{ flex: 1, padding: '40px' }}>
             <h1 style={{ color: '#18181b' }}>{t.tools.progress}</h1>
-            <p style={{ color: '#71717a', marginTop: '12px' }}>这里是您的学习进度看板。</p>
+            <p style={{ color: '#71717a', marginTop: '12px' }}>这里是您的学习数据分析。</p>
           </div>
         ) : !isStarted ? (
-          /* --- 欢迎主页 --- */
+          /* --- 欢迎主页 (核心修改点) --- */
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px' }}>
             <div style={{ backgroundColor: '#eef2ff', color: '#4338ca', padding: '6px 16px', borderRadius: '100px', fontSize: '13px', fontWeight: '600', marginBottom: '24px' }}>
               {t.tag}
@@ -179,7 +183,24 @@ export default function App() {
                 background: 'linear-gradient(135deg, #4338ca 0%, #818cf8 100%)', 
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'
               }}>{t.h1_bot}</h1>
-              <p style={{ color: '#71717a', fontSize: '18px', maxWidth: '580px', margin: '20px auto', lineHeight: 1.6 }}>{t.desc}</p>
+              
+              {/* --- 修改点：将 desc 调整为一行 --- */}
+              <p style={{ 
+                color: '#71717a', 
+                fontSize: '18px', 
+                margin: '20px auto', 
+                lineHeight: 1.6,
+                // 新增：强制一行显示，不换行
+                whiteSpace: 'nowrap',
+                // 新增：设置最大宽度，如果超出则隐藏
+                maxWidth: '100%', 
+                overflow: 'hidden',
+                // 新增（可选）：文本对齐
+                textAlign: 'center',
+                boxSizing: 'border-box'
+              }}>
+                {t.desc}
+              </p>
             </div>
             <button 
               onClick={() => setIsStarted(true)}
@@ -193,13 +214,10 @@ export default function App() {
             </button>
           </div>
         ) : (
-          /* --- 题目练习界面 --- */
+          /* --- 题目练习界面 (保持锁定) --- */
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '40px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '40px' }}>
-              <button 
-                onClick={() => setIsStarted(false)}
-                style={{ display: 'flex', alignItems: 'center', gap: '8px', border: 'none', background: 'none', cursor: 'pointer', color: '#71717a', fontSize: '14px' }}
-              >
+              <button onClick={() => setIsStarted(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px', border: 'none', background: 'none', cursor: 'pointer', color: '#71717a', fontSize: '14px' }}>
                 <ChevronLeft size={18} /> {t.back}
               </button>
               <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#4338ca', backgroundColor: '#eef2ff', padding: '6px 16px', borderRadius: '8px' }}>
@@ -214,11 +232,7 @@ export default function App() {
                   value={userInput}
                   onChange={(e) => setUserInput(e.target.value)}
                   placeholder={t.placeholder}
-                  style={{ 
-                    width: '100%', height: '220px', padding: '24px', borderRadius: '20px', 
-                    border: '1px solid #e1e1e6', fontSize: '18px', outline: 'none', resize: 'none',
-                    boxSizing: 'border-box', fontFamily: 'inherit'
-                  }}
+                  style={{ width: '100%', height: '220px', padding: '24px', borderRadius: '20px', border: '1px solid #e1e1e6', fontSize: '18px', outline: 'none', resize: 'none', boxSizing: 'border-box', fontFamily: 'inherit' }}
                 />
             </div>
           </div>
